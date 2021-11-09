@@ -15,7 +15,11 @@
 	var h4s = document.getElementsByTagName('h4');
 	
 	// 3. Class Name 가져오기
+	var h5s = document.getElementsByClassName("header");
+	
 	// 4. CSS 선택자로 가져오기
+	var header7 = document.querySelector("#header-07"); // id
+	var h6s = document.querySelectorAll(".header2"); // class
 	
 	setTimeout(function(){
 		header01.innerText += ' by getElementById()';
@@ -23,6 +27,13 @@
 		
 		h4s[0].innerText += ' by getElementsByTagName()';
 		h4s[1].innerText += ' by getElementsByTagName()';
+		
+		h5s[0].innerText += ' by getElementsByClassName()';
+		h5s[1].innerText += ' by getElementsByClassName()';
+		
+		header7.innerText += 'by querySelector()';
+		h6s[1].innerText += ' by querySelectorAll()';
+		
 	}, 3000);
  });
 </script>
@@ -36,5 +47,11 @@
 	
 	<h4>Header 03</h4>
 	<h4>Header 04</h4>
+	
+	<h5 class="header">Header 05</h5>
+	<h5 class="header">Header 06</h5>
+	
+	<h6 id="header-07" class="header2">Header 05</h6>
+	<h6 id="header-08" class="header2">Header 06</h6>
 </body>
 </html>
