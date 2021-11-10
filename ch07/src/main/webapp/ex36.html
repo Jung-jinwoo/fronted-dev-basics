@@ -22,13 +22,30 @@ var images = [
 	"펭귄:Penguins.jpg", 
 	"툴립:Tulips.jpg" ];
 
-$(function(){
 
-	$("button").click(function(){
+$(function(){
+	var state = null;
+	
+	$("#btn-change").click(function(){
 		// 랜덤 변수 
 		var result = Math.floor( Math.random() * (images.length-1));
+		var img = images[result].split(":").reverse()[0];
+			
+		$("img").attr("src", 'images/' + img);
+	});
+	
+	
+	$("#btn-slideshow").click(function(){
 		
-		console.log(result);
+		state = setInterval(function(){
+						var result = Math.floor( Math.random() * (images.length-1));
+						var img = images[result].split(":").reverse()[0];
+						$("img").attr("src", 'images/' + img);
+					}, 500);
+	});
+	
+	$("#btn-stop").click(function(){
+		clearInterval(state);
 	});
 	
 });
@@ -39,6 +56,7 @@ $(function(){
 		<div class="buttons">
 			<button id="btn-change">이미지 변경</button>
 			<button id="btn-slideshow">슬라이드쇼 시작</button>
+			<button id="btn-stop">슬라이드쇼 중지</button>
 		</div>
 		<div>
 			<img src="images/Desert.jpg" alt="사막" />
