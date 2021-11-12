@@ -1,3 +1,6 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,10 +14,13 @@ var listEJS = new EJS({
 	url: '${pageContext.request.contextPath }/ejs/list-template.ejs'
 });
 	
-var startNo = -1;
+var startNo;
 var fetch = function(){
+	var url = '${pageContext.request.contextPath }/api/guestbook/list' + (startNo ? ('?sn='+startNo) : '');
+	console.log(url);
+	
 	$.ajax({
-		url: '${pageContext.request.contextPath }/api/guestbook/list' + (startNo ? ('?sn='+startNo) : ''),
+		url: url,
 		dataTpe: 'json',
 		type: 'get',
 		success: function(response){
