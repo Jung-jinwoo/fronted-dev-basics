@@ -7,21 +7,65 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/jquery/jquery-3.6.0.js"></script>
 <script>
 $(function(){
-	$("button").click(function(){
+	$("#create").click(function(){
+		var vo = {
+			name: "둘리",
+			password: "1234",
+			email: "dooly@gmail.com",
+			gender: "male"
+		};
+		
 		$.ajax({
-			url: "${pageContext.request.contextPath}/api/post02",
-			async: true,
+			url: "${pageContext.request.contextPath}/api/user",
 			type: 'post',
 			dataType: 'json',
 			contentType: 'application/json',
 			data: JSON.stringify(vo),
 			success: function(response){
-				var html = "";
-				html += ("<h2>" + response.data.no + "</h2>");
-				html += ("<h3>" + response.data.name + "</h3>");
-				html += ("<h4>" + response.data.message + "</h4>");
-				
-				$("#data").append(html);
+				console.log(response);
+			}
+		});
+	});
+	
+	$("#read").click(function(){
+		$.ajax({
+			url: "${pageContext.request.contextPath}/api/user/10",
+			type: 'get',
+			dataType: 'json',
+			success: function(response){
+				console.log(response);
+			}
+		});
+	});
+	
+	$("#update").click(function(){
+		var vo = {
+			name: "또치",
+			password: "12345",
+			gender: "female"
+		};
+		
+		$.ajax({
+			url: "${pageContext.request.contextPath}/api/user/10",
+			type: 'put',
+			dataType: 'json',
+			contentType: 'application/json',
+			data: JSON.stringify(vo),
+			success: function(response){
+				console.log(response);
+			}
+		});
+	});
+	
+	$("#delete").click(function(){
+		$.ajax({
+			url: "${pageContext.request.contextPath}/api/user/10",
+			type: 'delete',
+			dataType: 'json',
+			contentType: 'application/x-www-form-unlencoded',
+			data: "password=1234",
+			success: function(response){
+				console.log(response);
 			}
 		});
 	});
