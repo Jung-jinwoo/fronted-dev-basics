@@ -39,9 +39,14 @@ var sum = function(){
     
     var sum = 0;
     // 구현1
-    for(var i=0; i<arguments.length; i++){
-        sum += arguments[i];
-    }
+    // for(var i=0; i<arguments.length; i++){
+    //     sum += arguments[i];
+    // }
+
+    // 구현2
+    Array.prototype.forEach.call(arguments, function(e){
+        sum += e;
+    })
 
     return sum;
 }
